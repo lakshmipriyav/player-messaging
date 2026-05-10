@@ -23,6 +23,7 @@ public class ConversationLogger {
     /** Logs an initiator round-trip event (send or receive). */
     public void logRound(String playerName, int round, String direction, Message message) {
         System.out.printf("[%s] %s (round %2d): \"%s\"%n", playerName, direction, round, message.getText());
+        System.out.println();
     }
 
     /** Logs that a player's loop has ended & it is shutting down. */

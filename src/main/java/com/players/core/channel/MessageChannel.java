@@ -5,9 +5,9 @@ import com.players.core.domain.Message;
 
 public interface MessageChannel extends Identifiable {
 
-    void send(Message message);
+    void send(Message message) throws InterruptedException;
 
-    Message receive();
+    Message receive() throws InterruptedException;
 
     void close();
 }
