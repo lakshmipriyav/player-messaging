@@ -14,11 +14,11 @@ public class Player implements Runnable, Identifiable{
     public Player(String name, MessageChannel inbound, MessageChannel outbound, ConversationLogger logger) {
         if (name == null || name.isBlank()) throw new IllegalArgumentException("Name shouldn't be null");
 
-        if (inbound == null) throw IllegalArgumentException("Inbound channel shouldn't be null");
+        if (inbound == null) throw new IllegalArgumentException("Inbound channel shouldn't be null");
 
-        if (outbound == null) throw IllegalArgumentException("Outbound channel shouldn't be null");
+        if (outbound == null) throw new IllegalArgumentException("Outbound channel shouldn't be null");
 
-        if(logger == null) throw IllegalArgumentException("Logger shouldn't be null");
+        if(logger == null) throw new IllegalArgumentException("Logger shouldn't be null");
 
         this.name = name;
         this.inbound = inbound;
