@@ -11,7 +11,7 @@ cd "$PROJECT_DIR" && mvn -q package -DskipTests
 
 echo ""
 echo ">>> Starting RESPONDER (Player2) on port $PORT..."
-java -cp "$JAR" com.360t.players.multiprocess.ResponderMain "$PORT" \
+java -cp "$JAR" com.players.multiprocess.ResponderMain "$PORT" \
     > "$RESPONDER_LOG" 2>&1 &
 RESPONDER_PID=$!
 echo "    PID : $RESPONDER_PID"
@@ -21,7 +21,7 @@ sleep 1
 
 echo ""
 echo ">>> Starting INITIATOR (Player1) — connecting to localhost:$PORT..."
-java -cp "$JAR" com.360t.players.multiprocess.InitiatorMain localhost "$PORT"
+java -cp "$JAR" com.players.multiprocess.InitiatorMain localhost "$PORT"
 
 echo ""
 echo ">>> Waiting for responder to finish..."
