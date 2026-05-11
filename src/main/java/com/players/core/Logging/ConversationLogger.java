@@ -33,7 +33,7 @@ public class ConversationLogger {
 
     /** Logs that the initiator has completed all configured round-trips. */
     public void logConversationComplete(String playerName, int rounds) {
-        System.out.printf("[%s] completed %d round-trip(s). Conversation finished.%n",
+        System.out.printf("[%s] completed %d round-trips. Conversation finished.%n",
                 playerName, rounds);
     }
 }
