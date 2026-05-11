@@ -1,6 +1,7 @@
 package com.players.multiprocess;
 
 import com.players.core.domain.Player;
+import com.players.core.domain.PlayerRole;
 import com.players.core.domain.TransportMode;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class ResponderMain {
             System.out.println("[Player2] connected: "+ clientSocket.getRemoteSocketAddress());
 
             TcpChannel channel = new TcpChannel("Player2-tcp", clientSocket);
-            new Player("Player2", channel, channel).run();
+            new Player("Player2", channel, channel, PlayerRole.RESPONDER).run();
 
             channel.close();
 

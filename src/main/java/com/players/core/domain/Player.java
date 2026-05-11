@@ -9,9 +9,10 @@ public class Player implements Runnable, Identifiable{
     private final String name;
     private final MessageChannel inbound;
     private final MessageChannel outbound;
+    private final PlayerRole role;
     private final ConversationLogger logger;
 
-    public Player(String name, MessageChannel inbound, MessageChannel outbound, ConversationLogger logger) {
+    public Player(String name, MessageChannel inbound, MessageChannel outbound, PlayerRole role, ConversationLogger logger) {
         if (name == null || name.isBlank()) throw new IllegalArgumentException("Name shouldn't be null");
 
         if (inbound == null) throw new IllegalArgumentException("Inbound channel shouldn't be null");
@@ -23,16 +24,22 @@ public class Player implements Runnable, Identifiable{
         this.name = name;
         this.inbound = inbound;
         this.outbound = outbound;
+        this.role = role;
         this.logger = logger;
     }
 
-    public Player(String name, MessageChannel inbound, MessageChannel outbound) {
-        this(name, inbound, outbound, new ConversationLogger());
+    public Player(String name, MessageChannel inbound, MessageChannel outbound, PlayerRole role) {
+        this(name, inbound, outbound, role, new ConversationLogger());
     }
 
     // Responder Role
     @Override
     public void run() {
+        if (role != PlayerRole.RESPONDER)
+            throw new IllegalStateException(
+                    name + " is " + role + " — only RESPONDER can call run()");
+
+        logger.logReady(name, role);
         try {
             while(!Thread.currentThread().isInterrupted()) {
                 Message received = inbound.receive();
@@ -52,7 +59,11 @@ public class Player implements Runnable, Identifiable{
 
     //Initiator Role
     public void initiateConversation(String intialMessage, int maxRounds) throws InterruptedException{
-        logger.logReady(name, PlayerRole.INITIATOR);
+        if (role != PlayerRole.INITIATOR)
+            throw new IllegalStateException(
+                    name + " is " + role + " — only INITIATOR can call initiateConversation()");
+
+        logger.logReady(name, role);
         String textToSend = intialMessage;
 
         for (int round = 1; round <= maxRounds; round++) {

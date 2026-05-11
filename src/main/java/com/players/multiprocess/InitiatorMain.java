@@ -1,6 +1,7 @@
 package com.players.multiprocess;
 
 import com.players.core.domain.Player;
+import com.players.core.domain.PlayerRole;
 import com.players.core.domain.TransportMode;
 
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class InitiatorMain {
 
         try{
             TcpChannel channel = new TcpChannel("Player1-tcp", socket);
-            new Player("Player1", channel, channel).initiateConversation(INITIAL_MESSAGE, ROUNDS);
+            new Player("Player1", channel, channel, PlayerRole.INITIATOR).initiateConversation(INITIAL_MESSAGE, ROUNDS);
 
             channel.close();
 
