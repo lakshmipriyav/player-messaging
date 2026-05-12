@@ -117,7 +117,7 @@ java -cp target/player-messaging.jar \com.players.multiprocess.InitiatorMain
 To use a different port (default is `9090`):
 
 ```bash
-./scripts/run_multiprocess.sh 9191
+./scripts/run-multi-process.sh 9191
 ```
 ---
 
