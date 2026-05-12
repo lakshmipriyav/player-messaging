@@ -1,5 +1,7 @@
 # player-messaging
 
+> Repository: [github.com/lakshmipriyav/player-messaging](https://github.com/lakshmipriyav/player-messaging.git)
+
 A Java Use-case about two players talking to each other. One starts the conversation, the other replies, and they keep going for exactly 10 rounds before stopping gracefully.
 
 ---
