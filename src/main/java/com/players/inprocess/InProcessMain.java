@@ -5,6 +5,16 @@ import com.players.core.domain.Player;
 import com.players.core.domain.PlayerRole;
 import com.players.core.domain.TransportMode;
 
+/**
+ * Responsibility: Bootstrap entry point for Mode A (same-process scenario).
+ *
+ * Transport : TransportMode.IN_PROCESS — same JVM, two threads (req 5 + query #7)
+ *
+ * Wiring (two unidirectional QueueChannels form a full-duplex pipe):
+ *
+ *   Player1 (initiator) ──[channelAtoB]──► Player2 (responder)
+ *   Player1 (initiator) ◄──[channelBtoA]── Player2 (responder)
+ */
 public class InProcessMain {
     private static final int ROUNDS = 10;
     private static final String INTITAL_MESSAGE = "Hello";

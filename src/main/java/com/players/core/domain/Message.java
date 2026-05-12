@@ -1,5 +1,8 @@
 package com.players.core.domain;
 
+/**
+ * Responsibility: Immutable value object representing one exchanged message.
+ **/
 public final class Message {
     private final MessageType type;
     private final String text;

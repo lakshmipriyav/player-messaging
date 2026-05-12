@@ -3,6 +3,27 @@ package com.players.core.domain;
 import com.players.core.Logging.ConversationLogger;
 import com.players.core.channel.MessageChannel;
 
+/**
+ * Responsibility: Models a single participant in the message-exchange protocol.
+ *
+ * OWNS:
+ *   name        – readable identifier.
+ *   inbound     – channel this player reads from.
+ *   outbound    – channel this player writes to.
+ *   sendCounter – monotonically increasing, appended to every outgoing payload.
+ *                 Starts at 1.
+ *   logger      – all console output delegated here; zero print statements in Player.
+ *
+ * DOES NOT KNOW:
+ *   - Whether transport is in-process or multi-process.
+ *   - How many round-trips occur (stop condition lives in the caller).
+ *
+ * TWO ROLES, ONE CLASS:
+ *   run()                     → RESPONDER (runs on background thread)
+ *   initiateConversation(...) → INITIATOR (runs on session/main thread)
+ *
+ * Role is a runtime decision made by the bootstrap class.
+ */
 public class Player implements Runnable, Identifiable{
     private int sendCounter = 1;
 

@@ -3,6 +3,9 @@ package com.players.core.Logging;
 import com.players.core.domain.Message;
 import com.players.core.domain.PlayerRole;
 
+/**
+ * Responsibility: Centralises ALL console output produced during a conversation.
+ **/
 public class ConversationLogger {
 
     /**player is ready and waiting in the given role.*/

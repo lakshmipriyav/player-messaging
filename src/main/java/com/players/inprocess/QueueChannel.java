@@ -5,7 +5,10 @@ import com.players.core.domain.Message;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
+/**
+ * Responsibility: In-process MessageChannel that passes Messages between two
+ * threads via a LinkedBlockingQueue.
+ */
 public class QueueChannel extends AbstractChannel {
 
     private final BlockingQueue<Message> queue = new LinkedBlockingQueue<>();

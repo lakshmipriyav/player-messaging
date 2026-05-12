@@ -1,5 +1,8 @@
 package com.players.core.channel;
 
+/**
+ * Responsibility: Shared base for all MessageChannel implementations.
+**/
 public abstract class AbstractChannel implements MessageChannel{
     private final String name;
 
